@@ -18,12 +18,12 @@ class Contact extends Component {
             agree: false,
             contactType: 'Tel.',
             message: '',
-            touched:{
-                firstname:false,
-                lastname:false,
-                telnum:false,
-                email:false,
-            }
+            // touched:{
+            //     firstname:false,
+            //     lastname:false,
+            //     telnum:false,
+            //     email:false,
+            // }
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -103,7 +103,7 @@ class Contact extends Component {
 
     render() {
         // var errors=this.validate();
-        var touched=this.state.touched;
+        // var touched=this.state.touched;
         return(
             <div className="container">
                 <div className="row">
