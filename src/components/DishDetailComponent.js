@@ -27,7 +27,7 @@ function RenderDish({dish}) {
     )
 }
 
-function RenderComments({comments, addComment, dishId}) {
+function RenderComments({comments, postComment, dishId}) {
     const comment = comments.map((comment)=>{
         return (
             <span key={comment.id}>
@@ -41,7 +41,7 @@ function RenderComments({comments, addComment, dishId}) {
         <Card className="text-left border-0">
             <CardTitle className="h5">Comments</CardTitle>
             {comment}
-            <CommentForm dishId={dishId} addComment={addComment} />
+            <CommentForm dishId={dishId} postComment={postComment} />
         </Card>
     )
 }
@@ -63,7 +63,7 @@ class CommentForm extends Component {
         this.toggleModal();
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
         // event.preventDefault();
     }
 
@@ -184,7 +184,7 @@ const DishDetail = (props) => {
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments dishId={props.dish.id} comments={props.comments} addComment={props.addComment} />
+                        <RenderComments dishId={props.dish.id} comments={props.comments} postComment={props.postComment} />
                         {/* <CommentModal /> */}
                     </div>
                 </div>
