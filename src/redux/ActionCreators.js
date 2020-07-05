@@ -44,6 +44,34 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     .catch(error =>  { console.log('post comments', error.message); alert('Your comment could not be posted\nError: '+error.message); });
 };
 
+export const postFeedback = (feedback) => (dispatch) => {
+    
+    return fetch(baseUrl + 'feedback', {
+        method: "POST",
+        body: JSON.stringify(feedback),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+        }
+      },
+      error => {
+            throw error;
+      })
+    .then(response => response.json())
+    // .then(response => dispatch(addComment(response)))
+    // .then(response => alert("Thank you for your feedback! "+JSON.stringify(feedback)))
+    .catch(error =>  { console.log('post comments', error.message); alert('Your comment could not be posted\nError: '+error.message); });
+};
+
 export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
